@@ -1,7 +1,11 @@
+import Navbar from "./components/Navbar/Navbar";
+
 function App() {
   return (
-    <main className="container mx-auto">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <main className="bg-slate-100 min-h-screen min-w- p-3">
+      <div className="container mx-auto bg-white rounded-md shadow-sm">
+        <Navbar />
+      </div>
     </main>
   );
 }
