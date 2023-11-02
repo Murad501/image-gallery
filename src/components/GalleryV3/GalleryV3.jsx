@@ -13,7 +13,7 @@ import image11 from "../../assets/images/image-11.jpeg";
 import { useState } from "react";
 import "./Gallery.css";
 
-const Gallery = ({ selectedIndex, setSelectedIndex, isDeletingImage }) => {
+const GalleryV3 = ({ selectedIndex, setSelectedIndex, isDeletingImage }) => {
   const [images, setImages] = useState([
     {
       id: 1,
@@ -180,4 +180,4 @@ const Gallery = ({ selectedIndex, setSelectedIndex, isDeletingImage }) => {
   );
 };
 
-export default Gallery;
+export default GalleryV3;
