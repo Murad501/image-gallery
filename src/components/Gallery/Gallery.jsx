@@ -1,65 +1,16 @@
 /* eslint-disable react/prop-types */
-import image1 from "../../assets/images/image-1.webp";
-import image2 from "../../assets/images/image-2.webp";
-import image3 from "../../assets/images/image-3.webp";
-import image4 from "../../assets/images/image-4.webp";
-import image5 from "../../assets/images/image-5.webp";
-import image6 from "../../assets/images/image-6.webp";
-import image7 from "../../assets/images/image-7.webp";
-import image8 from "../../assets/images/image-8.webp";
-import image9 from "../../assets/images/image-9.webp";
-import image10 from "../../assets/images/image-10.jpeg";
-import image11 from "../../assets/images/image-11.jpeg";
+
 import { useState } from "react";
 import "./Gallery.css";
+import AddImage from "../AddImage/AddImage";
 
-const Gallery = ({ selectedIndex, setSelectedIndex, isDeletingImage }) => {
-  const [images, setImages] = useState([
-    {
-      id: 1,
-      src: image1,
-    },
-    {
-      id: 2,
-      src: image2,
-    },
-    {
-      id: 3,
-      src: image3,
-    },
-    {
-      id: 4,
-      src: image4,
-    },
-    {
-      id: 5,
-      src: image5,
-    },
-    {
-      id: 6,
-      src: image6,
-    },
-    {
-      id: 7,
-      src: image7,
-    },
-    {
-      id: 8,
-      src: image8,
-    },
-    {
-      id: 9,
-      src: image9,
-    },
-    {
-      id: 10,
-      src: image10,
-    },
-    {
-      id: 11,
-      src: image11,
-    },
-  ]);
+const Gallery = ({
+  selectedImages,
+  setSelectedImages,
+  isDeletingImage,
+  images,
+  setImages,
+}) => {
   const [isHover, setIsHover] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(null);
 
@@ -117,15 +68,15 @@ const Gallery = ({ selectedIndex, setSelectedIndex, isDeletingImage }) => {
               onDrop={(e) => handleDrop(e)}
               draggable
             >
-              <div className="relative z-0">
+              <div className="relative z-0 h-full">
                 {draggedOverIndex === idx ? (
                   ""
                 ) : (
                   <img
                     src={image.src}
                     alt=""
-                    className={`${
-                      selectedIndex.includes(idx) &&
+                    className={`w-full h-full object-cover ${
+                      selectedImages.includes(image.id) &&
                       isDeletingImage &&
                       "shake-animation"
                     }`}
@@ -135,16 +86,17 @@ const Gallery = ({ selectedIndex, setSelectedIndex, isDeletingImage }) => {
               {/* image selection checkbox */}
               <input
                 type="checkbox"
-                checked={selectedIndex.includes(idx)}
+                checked={selectedImages.includes(image.id)}
                 onClick={() =>
-                  selectedIndex.includes(idx)
-                    ? setSelectedIndex(
-                        selectedIndex.filter((index) => index !== idx)
+                  selectedImages.includes(image.id)
+                    ? setSelectedImages(
+                        selectedImages.filter((id) => id !== image.id)
                       )
-                    : setSelectedIndex([...selectedIndex, idx])
+                    : setSelectedImages([...selectedImages, image.id])
                 }
                 className={`absolute top-3 left-3 w-4 h-4 cursor-pointer z-30 ${
-                  (isHover && hoverIndex === idx) || selectedIndex.includes(idx)
+                  (isHover && hoverIndex === idx) ||
+                  selectedImages.includes(image.id)
                     ? "block"
                     : "hidden"
                 }`}
@@ -153,7 +105,7 @@ const Gallery = ({ selectedIndex, setSelectedIndex, isDeletingImage }) => {
               <div>
                 <div
                   onMouseLeave={() => setIsHover(false)}
-                  className={`absolute inset-0 cursor-pointer z-20 bg-black opacity-30 ${
+                  className={`absolute inset-0  z-20 bg-black opacity-30 ${
                     hoverIndex === idx && isHover && !draggedIndex
                       ? "block enter-left-animation"
                       : "hidden"
@@ -163,7 +115,7 @@ const Gallery = ({ selectedIndex, setSelectedIndex, isDeletingImage }) => {
                 </div>
                 <div
                   onMouseLeave={() => setIsHover(false)}
-                  className={`absolute inset-0 cursor-pointer z-20 bg-black opacity-30 ${
+                  className={`absolute inset-0  z-20 bg-black opacity-30 ${
                     hoverIndex === idx && isHover && !draggedIndex
                       ? "block enter-right-animation"
                       : "hidden"
@@ -175,6 +127,7 @@ const Gallery = ({ selectedIndex, setSelectedIndex, isDeletingImage }) => {
             </div>
           </div>
         ))}
+        <AddImage setImages={setImages} images={images} />
       </div>
     </section>
   );
