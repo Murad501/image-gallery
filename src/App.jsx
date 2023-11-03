@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
-
 import image1 from "./assets/images/image-1.webp";
 import image2 from "./assets/images/image-2.webp";
 import image3 from "./assets/images/image-3.webp";
@@ -65,6 +64,8 @@ function App() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [isDeletingImage, setIsDeletingImage] = useState(false);
 
+
+  // handle delete image
   const handleDeleteImages = () => {
     setIsDeletingImage(true);
     setTimeout(() => {

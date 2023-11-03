@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./Gallery.css";
 import AddImage from "../AddImage/AddImage";
 import PropTypes from "prop-types";
+import "./Gallery.css";
 
 const Gallery = ({
   selectedImages,
@@ -132,6 +132,7 @@ const Gallery = ({
   );
 };
 
+// props validation
 Gallery.propTypes = {
   setImages: PropTypes.func.isRequired,
   images: PropTypes.array.isRequired,

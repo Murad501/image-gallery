@@ -1,14 +1,17 @@
-import { BiImage } from "react-icons/bi";
-import axios from "axios";
 import { useRef, useState } from "react";
-import toast from "react-hot-toast";
+import { BiImage } from "react-icons/bi";
 import { ImSpinner10 } from "react-icons/im";
+import toast from "react-hot-toast";
 import PropTypes from "prop-types";
+import axios from "axios";
+import "./AddImage.css";
 
 const AddImage = ({ setImages, images }) => {
   const [isUploading, setIsUploading] = useState(false);
+  const [isHover, setIsHover] = useState(false);
   const fileInputRef = useRef();
 
+  // image upload handler
   const handleImageUpload = async () => {
     const file = fileInputRef.current.files[0];
     if (file) {
@@ -41,9 +44,15 @@ const AddImage = ({ setImages, images }) => {
   };
 
   return (
-    <label htmlFor="fileInput" className="cursor-pointer">
+    <label
+    onMouseEnter={()=>setIsHover(true)}
+    onMouseLeave={()=>setIsHover(false)}
+      htmlFor="fileInput"
+      className={`cursor-pointer border-2 border-dashed border-slate-300  rounded-md ${isHover && 'border-animation'}`}
+    >
       <div
-        className={`border-2 border-dashed border-slate-300 w-full h-full py-10 rounded-md flex justify-center items-center ${
+      
+        className={` w-full h-full py-10 flex justify-center items-center ${
           isUploading ? "cursor-wait" : "cursor-pointer"
         }`}
       >
@@ -51,7 +60,7 @@ const AddImage = ({ setImages, images }) => {
           <ImSpinner10 className="animate-spin text-5xl text-slate-500" />
         ) : (
           <div className="grid grid-cols-1 gap-5 cursor-pointer">
-            <BiImage className="mx-auto text-5xl " />
+            <BiImage className="mx-auto text-5xl text-slate-700" />
             <p className="font-semibold text-slate-700 text-xl ">Add Images</p>
             <input
               type="file"
@@ -68,6 +77,7 @@ const AddImage = ({ setImages, images }) => {
   );
 };
 
+// props validation
 AddImage.propTypes = {
   setImages: PropTypes.func.isRequired,
   images: PropTypes.array.isRequired,

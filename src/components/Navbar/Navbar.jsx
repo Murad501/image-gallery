@@ -45,6 +45,7 @@ const Navbar = ({
   );
 };
 
+// props validation
 Navbar.propTypes = {
   selectedImages: PropTypes.array.isRequired,
   setSelectedImages: PropTypes.func.isRequired,
