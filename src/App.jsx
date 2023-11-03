@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
-import GalleryV3 from "./components/GalleryV3/GalleryV3";
 
 import image1 from "./assets/images/image-1.webp";
 import image2 from "./assets/images/image-2.webp";

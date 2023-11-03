@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
-
 import { useState } from "react";
 import "./Gallery.css";
 import AddImage from "../AddImage/AddImage";
+import PropTypes from "prop-types";
 
 const Gallery = ({
   selectedImages,
@@ -131,6 +130,14 @@ const Gallery = ({
       </div>
     </section>
   );
+};
+
+Gallery.propTypes = {
+  setImages: PropTypes.func.isRequired,
+  images: PropTypes.array.isRequired,
+  selectedImages: PropTypes.array.isRequired,
+  isDeletingImage: PropTypes.bool.isRequired,
+  setSelectedImages: PropTypes.func.isRequired,
 };
 
 export default Gallery;

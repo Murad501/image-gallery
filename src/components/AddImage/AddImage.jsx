@@ -1,15 +1,13 @@
-/* eslint-disable react/prop-types */
 import { BiImage } from "react-icons/bi";
 import axios from "axios";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { ImSpinner10 } from "react-icons/im";
+import PropTypes from "prop-types";
 
 const AddImage = ({ setImages, images }) => {
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef();
-
-  console.log(images);
 
   const handleImageUpload = async () => {
     const file = fileInputRef.current.files[0];
@@ -43,10 +41,7 @@ const AddImage = ({ setImages, images }) => {
   };
 
   return (
-    <label
-      htmlFor="fileInput"
-      className="cursor-pointer"
-    >
+    <label htmlFor="fileInput" className="cursor-pointer">
       <div
         className={`border-2 border-dashed border-slate-300 w-full h-full py-10 rounded-md flex justify-center items-center ${
           isUploading ? "cursor-wait" : "cursor-pointer"
@@ -71,6 +66,11 @@ const AddImage = ({ setImages, images }) => {
       </div>
     </label>
   );
+};
+
+AddImage.propTypes = {
+  setImages: PropTypes.func.isRequired,
+  images: PropTypes.array.isRequired,
 };
 
 export default AddImage;

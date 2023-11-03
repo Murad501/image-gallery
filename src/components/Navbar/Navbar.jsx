@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
+
 import { ImSpinner9 } from "react-icons/im";
+import PropTypes from 'prop-types'
 const Navbar = ({
   selectedImages,
   setSelectedImages,
@@ -43,5 +44,12 @@ const Navbar = ({
     </nav>
   );
 };
+
+Navbar.propTypes = {
+  selectedImages: PropTypes.array.isRequired,
+  setSelectedImages: PropTypes.func.isRequired,
+  handleDeleteImages: PropTypes.func.isRequired,
+  isDeletingImage: PropTypes.bool.isRequired,
+}
 
 export default Navbar;
